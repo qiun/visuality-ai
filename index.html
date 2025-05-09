@@ -282,12 +282,157 @@
       }
 
       /* LLM Document Processing Animation */
-      /* These styles are likely redundant since Tailwind is loaded via CDN */
-      /* Removing problematic CSS selectors that are causing parse errors */
+      .md:w-2/5 flex justify-center {
+        position: relative;
+      }
+
+      .w-64 h-64 md:w-80 md:h-80 relative z-10 {
+        position: relative;
+      }
+
+      .absolute
+        top-0
+        left-0
+        w-32
+        h-40
+        bg-white
+        rounded-lg
+        shadow-lg
+        transform
+        -rotate-6
+        transition-all
+        duration-700
+        overflow-hidden
+        z-10 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 32px;
+        height: 40px;
+        background-color: white;
+        border-radius: 16px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transform: rotate(-6deg);
+        transition: all 0.7s ease;
+        z-index: 10;
+      }
+
+      .w-full h-4 bg-gray-200 mb-2 {
+        width: 100%;
+        height: 4px;
+        background-color: #e5e7eb;
+        margin-bottom: 2px;
+      }
+
+      .w-3/4 h-2 bg-gray-200 mx-auto mb-1 {
+        width: 75%;
+        height: 2px;
+        background-color: #e5e7eb;
+        margin: 0 auto;
+        margin-bottom: 1px;
+      }
+
+      .w-5/6 h-2 bg-gray-200 mx-auto mb-1 {
+        width: 83.33%;
+        height: 2px;
+        background-color: #e5e7eb;
+        margin: 0 auto;
+        margin-bottom: 1px;
+      }
+
+      .w-4/5 h-2 bg-gray-200 mx-auto mb-3 {
+        width: 80%;
+        height: 2px;
+        background-color: #e5e7eb;
+        margin: 0 auto;
+        margin-bottom: 3px;
+      }
+
+      .w-full h-20 bg-gray-100 flex items-center justify-center {
+        width: 100%;
+        height: 20px;
+        background-color: #f3f4f6;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .i-fas-file-alt text-gray-400 text-2xl {
+        font-size: 24px;
+        color: #6b7280;
+      }
+
+      .w-5/6 h-2 bg-gray-200 mx-auto mt-3 mb-1 {
+        width: 83.33%;
+        height: 2px;
+        background-color: #e5e7eb;
+        margin: 0 auto;
+        margin-top: 3px;
+        margin-bottom: 1px;
+      }
+
+      .w-3/4 h-2 bg-gray-200 mx-auto {
+        width: 75%;
+        height: 2px;
+        background-color: #e5e7eb;
+        margin: 0 auto;
+      }
+
+      /* Text data flowing out animation */
+      .data-bit bg-primary w-1 h-1 rounded-full absolute bottom-4 right-2 {
+        position: absolute;
+        bottom: 4px;
+        right: 2px;
+        width: 4px;
+        height: 4px;
+        background-color: var(--primary-orange);
+        border-radius: 50%;
+      }
+
+      .data-bit bg-primary w-1.5 h-1.5 rounded-full absolute bottom-8 right-0 {
+        position: absolute;
+        bottom: 8px;
+        right: 0;
+        width: 6px;
+        height: 6px;
+        background-color: var(--primary-orange);
+        border-radius: 50%;
+      }
+
+      .data-bit bg-primary w-1 h-1 rounded-full absolute bottom-12 right-1 {
+        position: absolute;
+        bottom: 12px;
+        right: 1px;
+        width: 4px;
+        height: 4px;
+        background-color: var(--primary-orange);
+        border-radius: 50%;
+      }
 
       /* Data Flow Path and Particles */
-      .data-path-animation {
-        stroke-dashoffset: 0;
+      .data-flow-path absolute z-15 {
+        position: absolute;
+        top: 20%;
+        left: 24%;
+        width: 50%;
+        height: 30%;
+      }
+
+      .svg width-100% height-100% viewBox-0 0 100 100 preserveAspectRatio-none {
+        width: 100%;
+        height: 100%;
+        viewbox: 0 0 100 100;
+        preserveaspectratio: none;
+      }
+
+      .path d-M0 20 C30 10 70 30 100 0 {
+        stroke: var(--primary-orange);
+        stroke-width: 2;
+        fill: none;
+        stroke-dasharray: 5, 3;
+      }
+
+      .path-animation {
         animation: dashOffset 5s linear infinite;
       }
 
@@ -298,6 +443,33 @@
         100% {
           stroke-dashoffset: 0;
         }
+      }
+
+      .data-particle bg-primary animate-flow-1 {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: var(--primary-orange);
+        animation: flowAlongPath1 2s infinite;
+      }
+
+      .data-particle bg-primary animate-flow-2 {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: var(--primary-orange);
+        animation: flowAlongPath1 2s infinite 0.7s;
+      }
+
+      .data-particle bg-primary animate-flow-3 {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background-color: var(--primary-orange);
+        animation: flowAlongPath1 2s infinite 1.4s;
       }
 
       @keyframes flowAlongPath1 {
@@ -319,164 +491,24 @@
         }
       }
 
-      /* Brain Icon for AI with pulsating effect */
-      .brain-pulse {
-        animation: brainPulse 2s infinite alternate;
-      }
-
-      @keyframes brainPulse {
-        0% {
-          transform: scale(0.9);
-          opacity: 0.8;
-        }
-        100% {
-          transform: scale(1.1);
-          opacity: 1;
-        }
-      }
-
-      /* Brain ring animation */
-      .brain-ring {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 60px;
-        height: 60px;
-        border: 2px solid var(--primary-orange);
-        border-radius: 50%;
-        transform: translate(-50%, -50%) scale(0.8);
-        opacity: 0;
-        animation: ringExpand 2s infinite;
-      }
-
-      @keyframes ringExpand {
-        0% {
-          transform: translate(-50%, -50%) scale(0.8);
-          opacity: 0.6;
-        }
-        100% {
-          transform: translate(-50%, -50%) scale(1.5);
-          opacity: 0;
-        }
-      }
-
-      /* Process bar animation */
-      .process-bar {
-        height: 100%;
-        width: 0;
-        background-color: var(--primary-orange);
-        border-radius: 4px;
-        animation: processProgress 3s infinite;
-      }
-
-      @keyframes processProgress {
-        0% {
-          width: 0;
-        }
-        50% {
-          width: 100%;
-        }
-        100% {
-          width: 0;
-        }
-      }
-
-      /* Brain wave effect */
-      .brain-wave {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        border-radius: 50%;
-        border: 1px solid var(--primary-orange);
-        transform: translate(-50%, -50%);
-        opacity: 0;
-      }
-
-      .brain-wave-1 {
-        width: 100%;
-        height: 100%;
-        animation: waveExpand 3s infinite;
-      }
-
-      .brain-wave-2 {
-        width: 80%;
-        height: 80%;
-        animation: waveExpand 3s infinite 1s;
-      }
-
-      .brain-wave-3 {
-        width: 60%;
-        height: 60%;
-        animation: waveExpand 3s infinite 2s;
-      }
-
-      @keyframes waveExpand {
-        0% {
-          transform: translate(-50%, -50%) scale(0.8);
-          opacity: 0.2;
-        }
-        50% {
-          opacity: 0.1;
-        }
-        100% {
-          transform: translate(-50%, -50%) scale(1.4);
-          opacity: 0;
-        }
-      }
-
-      /* Grid background */
-      .grid-bg {
-        background-image: linear-gradient(
-            to right,
-            rgba(249, 115, 22, 0.1) 1px,
-            transparent 1px
-          ),
-          linear-gradient(
-            to bottom,
-            rgba(249, 115, 22, 0.1) 1px,
-            transparent 1px
-          );
-        background-size: 10px 10px;
-        opacity: 0.3;
-      }
-
-      /* Data dots in processor */
-      .data-dot {
-        position: absolute;
-        width: 4px;
-        height: 4px;
-        background-color: var(--primary-orange);
-        border-radius: 50%;
-        opacity: 0.6;
-        animation: dataDotPulse 3s infinite;
-      }
-
-      .data-dot:nth-child(even) {
-        background-color: white;
-        animation-delay: 0.5s;
-      }
-
-      .data-dot:nth-child(3n) {
-        animation-delay: 1s;
-      }
-
-      @keyframes dataDotPulse {
-        0% {
-          transform: scale(1);
-          opacity: 0.4;
-        }
-        50% {
-          transform: scale(1.8);
-          opacity: 0.9;
-        }
-        100% {
-          transform: scale(1);
-          opacity: 0.4;
-        }
-      }
-
       /* AI Processing Container */
-      .absolute.top-1\/2.left-1\/2.transform.-translate-x-1\/2.-translate-y-1\/2.w-44.h-44.bg-dark.bg-opacity-90.rounded-xl.flex.items-center.justify-center.z-20.shadow-lg.overflow-hidden {
+      .absolute
+        top-1/2
+        left-1/2
+        transform
+        -translate-x-1/2
+        -translate-y-1/2
+        w-44
+        h-44
+        bg-dark
+        bg-opacity-90
+        rounded-xl
+        flex
+        items-center
+        justify-center
+        z-20
+        shadow-lg
+        overflow-hidden {
         position: absolute;
         top: 50%;
         left: 50%;
