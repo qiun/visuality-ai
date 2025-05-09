@@ -1,0 +1,2562 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Solutions - Visuality</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-orange: #f97316;
+        --dark-bg: #111827;
+        --darker-bg: #1f2937;
+      }
+
+      @font-face {
+        font-family: "Neue Haas Grotesk";
+        src: url("https://fonts.cdnfonts.com/css/neue-haas-grotesk-display-pro")
+          format("woff2");
+        font-weight: 400;
+        font-style: normal;
+      }
+
+      body {
+        font-family: "Neue Haas Grotesk", "Inter", "Segoe UI", sans-serif;
+      }
+
+      .bg-primary {
+        background-color: var(--primary-orange);
+      }
+
+      .text-primary {
+        color: var(--primary-orange);
+      }
+
+      .border-primary {
+        border-color: var(--primary-orange);
+      }
+
+      .bg-dark {
+        background-color: var(--dark-bg);
+      }
+
+      .bg-darker {
+        background-color: var(--darker-bg);
+      }
+
+      .mega-heading {
+        font-size: 6rem;
+        line-height: 1;
+        letter-spacing: -2px;
+        font-weight: 600;
+      }
+
+      .dotted-background {
+        background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+        background-size: 20px 20px;
+      }
+
+      .hover-scale {
+        transition: transform 0.3s ease;
+      }
+
+      .hover-scale:hover {
+        transform: scale(1.02);
+      }
+
+      .section-spacer {
+        height: 100px;
+      }
+
+      @media (max-width: 768px) {
+        .mega-heading {
+          font-size: 3.5rem;
+        }
+        .section-spacer {
+          height: 60px;
+        }
+      }
+
+      /* Additional styles for the circuit animation */
+      .circuit-line {
+        opacity: 0.6;
+      }
+
+      .circuit-dot {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          opacity: 0.3;
+          transform: scale(0.8);
+        }
+        50% {
+          opacity: 1;
+          transform: scale(1.2);
+        }
+        100% {
+          opacity: 0.3;
+          transform: scale(0.8);
+        }
+      }
+
+      .circuit-lines .circuit-line:nth-child(1) {
+        animation: lineGlow 3s infinite;
+        animation-delay: 0.5s;
+      }
+
+      .circuit-lines .circuit-line:nth-child(2) {
+        animation: lineGlow 3s infinite;
+        animation-delay: 1s;
+      }
+
+      .circuit-lines .circuit-line:nth-child(3) {
+        animation: lineGlow 3s infinite;
+        animation-delay: 1.5s;
+      }
+
+      .circuit-lines .circuit-line:nth-child(4) {
+        animation: lineGlow 3s infinite;
+        animation-delay: 2s;
+      }
+
+      @keyframes lineGlow {
+        0% {
+          opacity: 0.3;
+        }
+        50% {
+          opacity: 0.8;
+        }
+        100% {
+          opacity: 0.3;
+        }
+      }
+
+      /* Testimonial slider styles */
+      .testimonial-slide {
+        box-sizing: border-box;
+      }
+
+      #testimonials-slider {
+        overflow: hidden !important;
+      }
+
+      @keyframes particleMove1 {
+        0% {
+          transform: translate(0, 0);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translate(30px, 30px);
+          opacity: 0;
+        }
+      }
+      @keyframes particleMove2 {
+        0% {
+          transform: translate(0, 0);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-40px, 20px);
+          opacity: 0;
+        }
+      }
+      @keyframes particleMove3 {
+        0% {
+          transform: translate(0, 0);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translate(20px, -30px);
+          opacity: 0;
+        }
+      }
+      @keyframes particleMove4 {
+        0% {
+          transform: translate(0, 0);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-30px, -25px);
+          opacity: 0;
+        }
+      }
+      @keyframes particleMove5 {
+        0% {
+          transform: translate(0, 0);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translate(-20px, -40px);
+          opacity: 0;
+        }
+      }
+
+      .animate-pulse-slow {
+        animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+
+      .animate-spin-slow {
+        animation: spin 8s linear infinite;
+      }
+
+      .animate-spin-reverse {
+        animation: spin 12s linear infinite reverse;
+      }
+
+      .arrow-animation-1 {
+        animation: arrowMove1 2s infinite;
+      }
+
+      .arrow-animation-2 {
+        animation: arrowMove2 2s infinite;
+      }
+
+      @keyframes arrowMove1 {
+        0% {
+          transform: translateX(0) translateY(0) rotate(-45deg);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(20px) translateY(20px) rotate(-45deg);
+          opacity: 0;
+        }
+      }
+
+      @keyframes arrowMove2 {
+        0% {
+          transform: translateX(0) translateY(0) rotate(-45deg);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(20px) translateY(20px) rotate(-45deg);
+          opacity: 0;
+        }
+      }
+
+      /* LLM Document Processing Animation */
+      /* These styles are likely redundant since Tailwind is loaded via CDN */
+      /* Removing problematic CSS selectors that are causing parse errors */
+
+      /* Data Flow Path and Particles */
+      .data-path-animation {
+        stroke-dashoffset: 0;
+        animation: dashOffset 5s linear infinite;
+      }
+
+      @keyframes dashOffset {
+        0% {
+          stroke-dashoffset: 50;
+        }
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      @keyframes flowAlongPath1 {
+        0% {
+          left: 0;
+          top: 20%;
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 1;
+        }
+        100% {
+          left: 100%;
+          top: 0;
+          opacity: 0;
+        }
+      }
+
+      /* Brain Icon for AI with pulsating effect */
+      .brain-pulse {
+        animation: brainPulse 2s infinite alternate;
+      }
+
+      @keyframes brainPulse {
+        0% {
+          transform: scale(0.9);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(1.1);
+          opacity: 1;
+        }
+      }
+
+      /* Brain ring animation */
+      .brain-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 60px;
+        height: 60px;
+        border: 2px solid var(--primary-orange);
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+        animation: ringExpand 2s infinite;
+      }
+
+      @keyframes ringExpand {
+        0% {
+          transform: translate(-50%, -50%) scale(0.8);
+          opacity: 0.6;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1.5);
+          opacity: 0;
+        }
+      }
+
+      /* Process bar animation */
+      .process-bar {
+        height: 100%;
+        width: 0;
+        background-color: var(--primary-orange);
+        border-radius: 4px;
+        animation: processProgress 3s infinite;
+      }
+
+      @keyframes processProgress {
+        0% {
+          width: 0;
+        }
+        50% {
+          width: 100%;
+        }
+        100% {
+          width: 0;
+        }
+      }
+
+      /* Brain wave effect */
+      .brain-wave {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        border: 1px solid var(--primary-orange);
+        transform: translate(-50%, -50%);
+        opacity: 0;
+      }
+
+      .brain-wave-1 {
+        width: 100%;
+        height: 100%;
+        animation: waveExpand 3s infinite;
+      }
+
+      .brain-wave-2 {
+        width: 80%;
+        height: 80%;
+        animation: waveExpand 3s infinite 1s;
+      }
+
+      .brain-wave-3 {
+        width: 60%;
+        height: 60%;
+        animation: waveExpand 3s infinite 2s;
+      }
+
+      @keyframes waveExpand {
+        0% {
+          transform: translate(-50%, -50%) scale(0.8);
+          opacity: 0.2;
+        }
+        50% {
+          opacity: 0.1;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1.4);
+          opacity: 0;
+        }
+      }
+
+      /* Grid background */
+      .grid-bg {
+        background-image: linear-gradient(
+            to right,
+            rgba(249, 115, 22, 0.1) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(249, 115, 22, 0.1) 1px,
+            transparent 1px
+          );
+        background-size: 10px 10px;
+        opacity: 0.3;
+      }
+
+      /* Data dots in processor */
+      .data-dot {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background-color: var(--primary-orange);
+        border-radius: 50%;
+        opacity: 0.6;
+        animation: dataDotPulse 3s infinite;
+      }
+
+      .data-dot:nth-child(even) {
+        background-color: white;
+        animation-delay: 0.5s;
+      }
+
+      .data-dot:nth-child(3n) {
+        animation-delay: 1s;
+      }
+
+      @keyframes dataDotPulse {
+        0% {
+          transform: scale(1);
+          opacity: 0.4;
+        }
+        50% {
+          transform: scale(1.8);
+          opacity: 0.9;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0.4;
+        }
+      }
+
+      /* AI Processing Container */
+      .absolute.top-1\/2.left-1\/2.transform.-translate-x-1\/2.-translate-y-1\/2.w-44.h-44.bg-dark.bg-opacity-90.rounded-xl.flex.items-center.justify-center.z-20.shadow-lg.overflow-hidden {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 44px;
+        height: 44px;
+        background-color: rgba(25, 32, 46, 0.9);
+        border-radius: 22px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 20;
+      }
+
+      .absolute inset-0 bg-grid {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.1) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.1) 1px,
+            transparent 1px
+          );
+        background-size: 10px 10px;
+      }
+
+      .relative w-full h-full p-4 {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        padding: 4px;
+      }
+
+      /* Brain Icon for AI with pulsating effect */
+      .brain-container
+        absolute
+        top-1/2
+        left-1/2
+        transform
+        -translate-x-1/2
+        -translate-y-1/2
+        z-30 {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 30;
+      }
+
+      .i-fas-brain text-primary text-5xl pulse-grow {
+        font-size: 32px;
+        color: var(--primary-orange);
+        animation: pulseGrow 2s infinite alternate;
+      }
+
+      .div.brain-ring
+        absolute
+        top-1/2
+        left-1/2
+        transform
+        -translate-x-1/2
+        -translate-y-1/2 {
+        width: 60px;
+        height: 60px;
+        border: 2px solid var(--primary-orange);
+        border-radius: 50%;
+        opacity: 0;
+        animation: brainRing 2s infinite;
+      }
+
+      @keyframes brainRing {
+        0% {
+          transform: translate(-50%, -50%) scale(0.8);
+          opacity: 0.8;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1.5);
+          opacity: 0;
+        }
+      }
+
+      /* Processing indicator and data points */
+      .absolute inset-0 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      /* Processing bars */
+      .process-bar-container
+        absolute
+        left-4
+        right-4
+        top-4
+        h-1.5
+        bg-gray-700
+        rounded-full
+        overflow-hidden {
+        position: absolute;
+        left: 4px;
+        right: 4px;
+        top: 4px;
+        height: 1.5px;
+        background-color: rgba(31, 41, 55, 0.7);
+        border-radius: 50%;
+        overflow: hidden;
+      }
+
+      .process-bar bg-primary h-full rounded-full {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 0%;
+        height: 100%;
+        background-color: var(--primary-orange);
+        border-radius: 50%;
+        animation: processBarFill 3s infinite;
+      }
+
+      @keyframes processBarFill {
+        0% {
+          width: 0%;
+        }
+        50% {
+          width: 100%;
+        }
+        100% {
+          width: 0%;
+        }
+      }
+
+      /* Data visualization inside the processor */
+      .data-point-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .data-point absolute bg-primary {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        border-radius: 50%;
+        background-color: var(--primary-orange);
+        animation: dataPointMove 4s infinite ease-in-out;
+      }
+
+      .data-point:nth-child(1) {
+        top: 30%;
+        left: 20%;
+      }
+      .data-point:nth-child(2) {
+        top: 40%;
+        left: 70%;
+      }
+      .data-point:nth-child(3) {
+        top: 60%;
+        left: 30%;
+      }
+      .data-point:nth-child(4) {
+        top: 70%;
+        left: 80%;
+      }
+      .data-point:nth-child(5) {
+        top: 20%;
+        left: 50%;
+      }
+      .data-point:nth-child(6) {
+        top: 80%;
+        left: 40%;
+      }
+
+      @keyframes dataPointMove {
+        0% {
+          transform: translate(0, 0);
+        }
+        25% {
+          transform: translate(15px, 5px);
+        }
+        50% {
+          transform: translate(0, 15px);
+        }
+        75% {
+          transform: translate(-15px, 5px);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
+
+      /* Code snippets flying through */
+      .code-snippet absolute top-1/4 left-0 h-8 opacity-40 code-flow {
+        position: absolute;
+        top: 12.5%;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        opacity: 0.4;
+        animation: codeFlow 4s infinite linear;
+      }
+
+      .bg-white bg-opacity-30 px-2 rounded text-xs monospace {
+        background-color: rgba(255, 255, 255, 0.3);
+        border-radius: 4px;
+        padding: 2px 4px;
+        font-family: monospace;
+      }
+
+      @keyframes codeFlow {
+        0% {
+          transform: translateX(-100%);
+          opacity: 0;
+        }
+        20% {
+          opacity: 0.4;
+        }
+        80% {
+          opacity: 0.4;
+        }
+        100% {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+      }
+
+      /* Brain effect waves */
+      .brain-effect {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        border: 1px solid var(--primary-orange);
+        opacity: 0;
+      }
+
+      .brain-effect-1 {
+        width: 100%;
+        height: 100%;
+        animation: brainWave 3s infinite;
+      }
+
+      .brain-effect-2 {
+        width: 80%;
+        height: 80%;
+        animation: brainWave 3s infinite 1s;
+      }
+
+      .brain-effect-3 {
+        width: 60%;
+        height: 60%;
+        animation: brainWave 3s infinite 2s;
+      }
+
+      @keyframes brainWave {
+        0% {
+          transform: translate(-50%, -50%) scale(0.8);
+          opacity: 0.2;
+        }
+        50% {
+          opacity: 0.1;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1.2);
+          opacity: 0;
+        }
+      }
+
+      /* Grid background */
+      .bg-grid {
+        background-image: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.1) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(255, 255, 255, 0.1) 1px,
+            transparent 1px
+          );
+        background-size: 10px 10px;
+      }
+
+      .monospace {
+        font-family: monospace;
+      }
+
+      .animate-pulse-slow {
+        animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+
+      .animate-spin-slow {
+        animation: spin 8s linear infinite;
+      }
+
+      .animate-spin-reverse {
+        animation: spin 12s linear infinite reverse;
+      }
+
+      .arrow-animation-1 {
+        animation: arrowMove1 2s infinite;
+      }
+
+      .arrow-animation-2 {
+        animation: arrowMove2 2s infinite;
+      }
+
+      @keyframes arrowMove1 {
+        0% {
+          transform: translateX(0) translateY(0) rotate(-45deg);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(20px) translateY(20px) rotate(-45deg);
+          opacity: 0;
+        }
+      }
+
+      @keyframes arrowMove2 {
+        0% {
+          transform: translateX(0) translateY(0) rotate(-45deg);
+          opacity: 0;
+        }
+        20% {
+          opacity: 1;
+        }
+        80% {
+          opacity: 1;
+        }
+        100% {
+          transform: translateX(20px) translateY(20px) rotate(-45deg);
+          opacity: 0;
+        }
+      }
+
+      .animate-pulse-slow {
+        animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+      }
+
+      /* Data flow path animation */
+      .data-path-animation {
+        stroke-dashoffset: 0;
+        animation: dashOffset 5s linear infinite;
+      }
+
+      @keyframes dashOffset {
+        0% {
+          stroke-dashoffset: 50;
+        }
+        100% {
+          stroke-dashoffset: 0;
+        }
+      }
+
+      /* Grid background for processor */
+      .grid-bg {
+        background-image: linear-gradient(
+            to right,
+            rgba(249, 115, 22, 0.1) 1px,
+            transparent 1px
+          ),
+          linear-gradient(
+            to bottom,
+            rgba(249, 115, 22, 0.1) 1px,
+            transparent 1px
+          );
+        background-size: 10px 10px;
+        opacity: 0.3;
+      }
+
+      /* Data dots in processor */
+      .data-dot {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background-color: var(--primary-orange);
+        border-radius: 50%;
+        opacity: 0.6;
+        animation: dataDotPulse 3s infinite;
+      }
+
+      .data-dot:nth-child(even) {
+        background-color: white;
+        animation-delay: 0.5s;
+      }
+
+      .data-dot:nth-child(3n) {
+        animation-delay: 1s;
+      }
+
+      @keyframes dataDotPulse {
+        0% {
+          transform: scale(1);
+          opacity: 0.4;
+        }
+        50% {
+          transform: scale(1.8);
+          opacity: 0.9;
+        }
+        100% {
+          transform: scale(1);
+          opacity: 0.4;
+        }
+      }
+
+      /* Brain pulse animation */
+      .brain-pulse {
+        animation: brainPulse 2s infinite alternate;
+      }
+
+      @keyframes brainPulse {
+        0% {
+          transform: scale(0.9);
+          opacity: 0.8;
+        }
+        100% {
+          transform: scale(1.1);
+          opacity: 1;
+        }
+      }
+
+      /* Brain ring animation */
+      .brain-ring {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 60px;
+        height: 60px;
+        border: 2px solid var(--primary-orange);
+        border-radius: 50%;
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+        animation: ringExpand 2s infinite;
+      }
+
+      @keyframes ringExpand {
+        0% {
+          transform: translate(-50%, -50%) scale(0.8);
+          opacity: 0.6;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1.5);
+          opacity: 0;
+        }
+      }
+
+      /* Process bar animation */
+      .process-bar {
+        height: 100%;
+        width: 0;
+        background-color: var(--primary-orange);
+        border-radius: 4px;
+        animation: processProgress 3s infinite;
+      }
+
+      @keyframes processProgress {
+        0% {
+          width: 0;
+        }
+        50% {
+          width: 100%;
+        }
+        100% {
+          width: 0;
+        }
+      }
+
+      /* Brain wave effect */
+      .brain-wave {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        border-radius: 50%;
+        border: 1px solid var(--primary-orange);
+        transform: translate(-50%, -50%);
+        opacity: 0;
+      }
+
+      .brain-wave-1 {
+        width: 100%;
+        height: 100%;
+        animation: waveExpand 3s infinite;
+      }
+
+      .brain-wave-2 {
+        width: 80%;
+        height: 80%;
+        animation: waveExpand 3s infinite 1s;
+      }
+
+      .brain-wave-3 {
+        width: 60%;
+        height: 60%;
+        animation: waveExpand 3s infinite 2s;
+      }
+
+      @keyframes waveExpand {
+        0% {
+          transform: translate(-50%, -50%) scale(0.8);
+          opacity: 0.2;
+        }
+        50% {
+          opacity: 0.1;
+        }
+        100% {
+          transform: translate(-50%, -50%) scale(1.4);
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-white text-gray-900">
+    <!-- Navigation Bar -->
+    <nav class="bg-white fixed w-full border-b border-gray-200 z-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between h-16 items-center">
+          <div class="flex-shrink-0 flex items-center">
+            <a href="#" class="text-gray-900 font-bold text-xl">Visuality</a>
+          </div>
+          <div class="hidden md:block">
+            <div class="ml-10 flex items-center space-x-8">
+              <a href="#" class="text-gray-700 hover:text-primary font-medium"
+                >Services</a
+              >
+              <a href="#" class="text-gray-700 hover:text-primary font-medium"
+                >Case Studies</a
+              >
+              <a href="#" class="text-gray-700 hover:text-primary font-medium"
+                >About us</a
+              >
+              <a href="#" class="text-gray-700 hover:text-primary font-medium"
+                >Consultants</a
+              >
+              <a href="#" class="text-gray-700 hover:text-primary font-medium"
+                >Pricing</a
+              >
+              <a href="#" class="text-gray-700 hover:text-primary font-medium"
+                >Workshops</a
+              >
+              <a href="#" class="text-gray-700 hover:text-primary font-medium"
+                >Blog</a
+              >
+              <a href="#" class="text-gray-700 hover:text-primary font-medium"
+                >Videos</a
+              >
+            </div>
+          </div>
+          <div class="ml-4 flex items-center">
+            <a
+              href="#contact"
+              class="bg-primary text-white px-4 py-2 rounded hover:bg-orange-600 transition-colors"
+            >
+              Contact
+            </a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section with Grid Background -->
+    <section class="pt-32 pb-24 dotted-background">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="md:w-3/5 mb-12 pt-8">
+            <h1 class="text-gray-800 mb-4">
+              <div class="mega-heading">
+                Ruby<span class="text-primary"> + </span>AI<span
+                  class="text-primary"
+                  >.</span
+                >
+              </div>
+              <div
+                class="text-primary text-5xl md:text-6xl font-semibold leading-tight mt-6"
+              >
+                Your ideas.<br />
+                Your success.<br />
+                Your growth.
+              </div>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-600 mt-8 mb-12 max-w-3xl">
+              We help You implement production-ready AI into Your Ruby on Rails
+              applications.
+            </p>
+            <div class="flex flex-wrap gap-4">
+              <a
+                href="#contact"
+                class="bg-primary text-white px-6 py-3 text-lg font-bold rounded hover:bg-orange-600 transition-colors"
+              >
+                Book Your Free AI Consultation
+              </a>
+              <a
+                href="#"
+                class="bg-dark text-white px-6 py-3 text-lg font-bold rounded hover:bg-gray-800 transition-colors"
+              >
+                View Our Work
+              </a>
+            </div>
+          </div>
+
+          <!-- LLM Document Processing Animation -->
+          <div class="md:w-2/5 flex justify-center">
+            <div class="relative">
+              <div class="w-64 h-64 md:w-80 md:h-80 relative z-10">
+                <!-- Document Input -->
+                <div
+                  class="absolute top-0 left-0 w-32 h-40 bg-white rounded-lg shadow-lg transform -rotate-6 transition-all duration-700 animate-pulse-slow overflow-hidden z-10"
+                >
+                  <div class="w-full h-4 bg-gray-200 mb-2"></div>
+                  <div class="w-3/4 h-2 bg-gray-200 mx-auto mb-1"></div>
+                  <div class="w-5/6 h-2 bg-gray-200 mx-auto mb-1"></div>
+                  <div class="w-4/5 h-2 bg-gray-200 mx-auto mb-3"></div>
+                  <div
+                    class="w-full h-20 bg-gray-100 flex items-center justify-center"
+                  >
+                    <i class="fas fa-file-alt text-gray-400 text-2xl"></i>
+                  </div>
+                  <div class="w-5/6 h-2 bg-gray-200 mx-auto mt-3 mb-1"></div>
+                  <div class="w-3/4 h-2 bg-gray-200 mx-auto"></div>
+                </div>
+
+                <!-- Data Flow Path from Input to Processing -->
+                <svg
+                  class="absolute left-20 top-24 w-20 h-20 z-15"
+                  viewBox="0 0 100 100"
+                >
+                  <path
+                    d="M0,0 C30,30 40,80 100,80"
+                    stroke="#f97316"
+                    stroke-width="3"
+                    fill="none"
+                    stroke-dasharray="5,3"
+                    class="data-path-animation"
+                  ></path>
+                  <circle class="flow-dot" r="3" fill="#f97316">
+                    <animateMotion
+                      dur="2s"
+                      repeatCount="indefinite"
+                      path="M0,0 C30,30 40,80 100,80"
+                    />
+                  </circle>
+                  <circle class="flow-dot" r="3" fill="#f97316">
+                    <animateMotion
+                      dur="2s"
+                      begin="0.7s"
+                      repeatCount="indefinite"
+                      path="M0,0 C30,30 40,80 100,80"
+                    />
+                  </circle>
+                </svg>
+
+                <!-- AI Processing Container -->
+                <div
+                  class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-44 h-44 bg-dark bg-opacity-90 rounded-xl flex items-center justify-center z-20 shadow-lg overflow-hidden"
+                >
+                  <!-- Glowing grid background -->
+                  <div class="absolute inset-0 grid-bg"></div>
+
+                  <!-- Moving dots background -->
+                  <div class="absolute inset-0">
+                    <div class="data-dot" style="top: 20%; left: 10%"></div>
+                    <div class="data-dot" style="top: 70%; left: 30%"></div>
+                    <div class="data-dot" style="top: 40%; left: 80%"></div>
+                    <div class="data-dot" style="top: 60%; left: 20%"></div>
+                    <div class="data-dot" style="top: 30%; left: 60%"></div>
+                    <div class="data-dot" style="top: 80%; left: 50%"></div>
+                  </div>
+
+                  <!-- Brain with animation -->
+                  <div class="relative">
+                    <i
+                      class="fas fa-brain text-primary text-5xl brain-pulse"
+                    ></i>
+                    <div class="brain-ring"></div>
+                  </div>
+
+                  <!-- Processing bars -->
+                  <div
+                    class="absolute bottom-6 left-6 right-6 h-1.5 bg-gray-700 rounded-full overflow-hidden"
+                  >
+                    <div class="process-bar"></div>
+                  </div>
+                </div>
+
+                <!-- Data Flow Path from Processing to Output -->
+                <svg
+                  class="absolute right-20 bottom-24 w-20 h-20 z-25"
+                  viewBox="0 0 100 100"
+                >
+                  <path
+                    d="M0,80 C30,70 70,40 100,0"
+                    stroke="#f97316"
+                    stroke-width="3"
+                    fill="none"
+                    stroke-dasharray="5,3"
+                    class="data-path-animation"
+                  ></path>
+                  <circle class="flow-dot" r="3" fill="#f97316">
+                    <animateMotion
+                      dur="2s"
+                      repeatCount="indefinite"
+                      path="M0,80 C30,70 70,40 100,0"
+                    />
+                  </circle>
+                  <circle class="flow-dot" r="3" fill="#f97316">
+                    <animateMotion
+                      dur="2s"
+                      begin="0.5s"
+                      repeatCount="indefinite"
+                      path="M0,80 C30,70 70,40 100,0"
+                    />
+                  </circle>
+                </svg>
+
+                <!-- Document Output (Beautiful Document) -->
+                <div
+                  class="absolute bottom-0 right-0 w-36 h-44 bg-white rounded-lg shadow-lg transform rotate-6 transition-all duration-700 overflow-hidden z-30"
+                >
+                  <div class="w-full h-6 bg-primary mb-2"></div>
+                  <div class="w-4/5 h-2 bg-gray-800 mx-auto mb-1"></div>
+                  <div class="w-5/6 h-2 bg-gray-800 mx-auto mb-3"></div>
+
+                  <div class="w-full h-20 bg-white p-2">
+                    <div
+                      class="w-full h-full bg-gray-50 rounded border border-primary flex items-center justify-center"
+                    >
+                      <i class="fas fa-check-circle text-primary text-2xl"></i>
+                    </div>
+                  </div>
+
+                  <div class="w-3/4 h-2 bg-gray-800 mx-auto mt-3 mb-1"></div>
+                  <div class="w-5/6 h-2 bg-gray-800 mx-auto mb-1"></div>
+                  <div class="w-4/5 h-2 bg-gray-800 mx-auto mb-1"></div>
+                  <div class="w-3/4 h-2 bg-gray-800 mx-auto mb-1"></div>
+                </div>
+
+                <!-- Brain Effect Waves -->
+                <div
+                  class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-56 h-56 z-5"
+                >
+                  <div class="brain-wave brain-wave-1"></div>
+                  <div class="brain-wave brain-wave-2"></div>
+                  <div class="brain-wave brain-wave-3"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-spacer"></div>
+
+        <div class="bg-white p-10 rounded-xl shadow-sm mt-16">
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="md:col-span-1">
+              <h2 class="text-3xl font-bold mb-4 text-gray-800">
+                <span class="text-primary">Ruby on Rails</span><br />with AI
+                Integration
+              </h2>
+              <div class="w-20 h-1 bg-primary mb-6"></div>
+            </div>
+            <div class="md:col-span-2">
+              <p class="text-lg mb-6 text-gray-600">
+                Our services are focused on combining Ruby expertise with
+                cutting-edge AI capabilities. Our tech-talents range from mid
+                and senior developers to seasoned consultants specialized in AI
+                integration.
+              </p>
+              <div class="bg-gray-50 p-6 rounded-lg border-l-4 border-primary">
+                <h3 class="text-xl font-semibold mb-4 text-gray-800">
+                  What we offer:
+                </h3>
+                <ul class="list-disc pl-5 space-y-3 text-lg text-gray-600">
+                  <li>Advanced semantic search using vector databases</li>
+                  <li>LLM embeddings for intelligent data processing</li>
+                  <li>Custom AI solutions integrated with Ruby applications</li>
+                  <li>Recommendation engines powered by machine learning</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Service Categories Grid -->
+    <section class="py-20 bg-gray-50">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <h2 class="text-4xl font-bold mb-6">
+            Our <span class="text-primary">Services</span>
+          </h2>
+          <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+            Combining Ruby on Rails expertise with advanced AI technologies to
+            deliver solutions that transform your business
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Category 1 -->
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:translate-y-[-5px]"
+          >
+            <div class="h-2 bg-primary"></div>
+            <div class="p-8">
+              <div
+                class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6"
+              >
+                <i class="fas fa-laptop-code text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-3 text-gray-800">Engineers</h3>
+              <p class="text-gray-600 mb-6">
+                Seasoned Ruby on Rails & AI pros who combine technical expertise
+                with innovative thinking
+              </p>
+              <div class="flex items-center text-primary font-semibold">
+                <span>Learn more</span>
+                <i class="fas fa-arrow-right ml-2 text-sm"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 2 -->
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:translate-y-[-5px]"
+          >
+            <div class="h-2 bg-primary"></div>
+            <div class="p-8">
+              <div
+                class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6"
+              >
+                <i class="fas fa-chalkboard-teacher text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-3 text-gray-800">Consultants</h3>
+              <p class="text-gray-600 mb-6">
+                AI solution architects and product guides who shape your AI
+                strategy and implementation
+              </p>
+              <div class="flex items-center text-primary font-semibold">
+                <span>Learn more</span>
+                <i class="fas fa-arrow-right ml-2 text-sm"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 3 -->
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:translate-y-[-5px]"
+          >
+            <div class="h-2 bg-primary"></div>
+            <div class="p-8">
+              <div
+                class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6"
+              >
+                <i class="fas fa-tasks text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-3 text-gray-800">
+                Project managers
+              </h3>
+              <p class="text-gray-600 mb-6">
+                AI project delivery specialists who ensure timely and effective
+                implementation
+              </p>
+              <div class="flex items-center text-primary font-semibold">
+                <span>Learn more</span>
+                <i class="fas fa-arrow-right ml-2 text-sm"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 4 -->
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:translate-y-[-5px]"
+          >
+            <div class="h-2 bg-primary"></div>
+            <div class="p-8">
+              <div
+                class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6"
+              >
+                <i class="fas fa-gem text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-3 text-gray-800">
+                Ruby on Rails
+              </h3>
+              <p class="text-gray-600 mb-6">
+                Experienced Ruby Developers with AI expertise who build robust,
+                scalable applications
+              </p>
+              <div class="flex items-center text-primary font-semibold">
+                <span>Learn more</span>
+                <i class="fas fa-arrow-right ml-2 text-sm"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 5 -->
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:translate-y-[-5px]"
+          >
+            <div class="h-2 bg-primary"></div>
+            <div class="p-8">
+              <div
+                class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6"
+              >
+                <i class="fas fa-brain text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-3 text-gray-800">
+                AI Integrations
+              </h3>
+              <p class="text-gray-600 mb-6">
+                OpenAI, OLLAMA, and custom LLM solutions tailored to your
+                business needs
+              </p>
+              <div class="flex items-center text-primary font-semibold">
+                <span>Learn more</span>
+                <i class="fas fa-arrow-right ml-2 text-sm"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category 6 -->
+          <div
+            class="bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:translate-y-[-5px]"
+          >
+            <div class="h-2 bg-primary"></div>
+            <div class="p-8">
+              <div
+                class="w-16 h-16 bg-primary bg-opacity-10 rounded-full flex items-center justify-center mb-6"
+              >
+                <i class="fas fa-search text-primary text-2xl"></i>
+              </div>
+              <h3 class="text-2xl font-bold mb-3 text-gray-800">
+                Vector Search
+              </h3>
+              <p class="text-gray-600 mb-6">
+                Semantic understanding for your applications to deliver more
+                intelligent results
+              </p>
+              <div class="flex items-center text-primary font-semibold">
+                <span>Learn more</span>
+                <i class="fas fa-arrow-right ml-2 text-sm"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- What We've Done with AI Section -->
+    <section class="py-20 dotted-background">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-16">
+          <h2 class="text-4xl font-bold mb-8">
+            What We've Done with AI?<br />
+            <span class="text-primary">Our Experience</span>
+          </h2>
+        </div>
+
+        <!-- Case Study 1 - Image right, text left -->
+        <div class="bg-dark text-white mb-16 rounded-lg overflow-hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2">
+            <div class="p-12 flex flex-col justify-center">
+              <h4 class="text-3xl font-bold mb-6">
+                AI-Powered Data Extraction from Financial Documents
+              </h4>
+              <p class="text-gray-300 mb-6">
+                For a UK-based financial services company handling property
+                valuation reports, we created a sophisticated AI system that
+                automatically extracts structured data from unstructured PDF
+                documents.
+              </p>
+              <div class="mb-8">
+                <h5 class="font-semibold mb-3 text-primary">
+                  Key Achievements:
+                </h5>
+                <ul class="space-y-2 text-gray-300">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-primary mr-2 mt-1"></i>
+                    <span
+                      >Processed over 1,000 financial documents monthly</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-primary mr-2 mt-1"></i>
+                    <span
+                      >Reduced processing time to ~5 seconds per document</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-primary mr-2 mt-1"></i>
+                    <span
+                      >Maintained complete data privacy with AWS Bedrock</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-primary mr-2 mt-1"></i>
+                    <span
+                      >Lowered processing costs to $0.002-0.003 per
+                      document</span
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <div class="flex items-center space-x-4">
+                <div class="bg-darker p-3 rounded-full">
+                  <img
+                    src="https://images.unsplash.com/photo-1564564321837-a57b7070ac4f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80"
+                    alt="Urszula Sołogub"
+                    class="w-12 h-12 rounded-full object-cover"
+                  />
+                </div>
+                <div>
+                  <div class="font-bold">Urszula Sołogub</div>
+                  <div class="text-sm text-gray-400">
+                    AI Integration Specialist at Visuality
+                  </div>
+                </div>
+              </div>
+
+              <a
+                href="https://www.youtube.com/watch?v=Y7GYO-RdyMk"
+                target="_blank"
+                class="inline-flex items-center mt-8 text-primary hover:underline"
+              >
+                Read case study
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 ml-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </a>
+            </div>
+
+            <div
+              class="bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center p-8"
+            >
+              <div class="relative w-full max-w-md">
+                <img
+                  src="https://images.unsplash.com/photo-1633265486064-086b219458ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                  alt="AI Data Extraction"
+                  class="w-full h-auto rounded-lg shadow-lg"
+                />
+                <div
+                  class="absolute -bottom-4 -right-4 bg-primary text-white text-xs px-3 py-1 rounded font-semibold"
+                >
+                  AWS Bedrock + Claude 3 Haiku
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 2 - Image left, text right -->
+        <div class="bg-dark text-white mb-16 rounded-lg overflow-hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2">
+            <div
+              class="bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center p-8 order-2 md:order-1"
+            >
+              <div class="relative w-full max-w-md">
+                <img
+                  src="https://images.unsplash.com/photo-1555952494-efd681c7e3f9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                  alt="Vector Search Visualization"
+                  class="w-full h-auto rounded-lg shadow-lg"
+                />
+                <div
+                  class="absolute -bottom-4 -left-4 bg-primary text-white text-xs px-3 py-1 rounded font-semibold"
+                >
+                  PostgreSQL + pgvector
+                </div>
+              </div>
+            </div>
+
+            <div class="p-12 flex flex-col justify-center order-1 md:order-2">
+              <h4 class="text-3xl font-bold mb-6">
+                Semantic Search Engine for Knowledge Base
+              </h4>
+              <p class="text-gray-300 mb-6">
+                We implemented a sophisticated semantic search system for a
+                client with a large knowledge base. Rather than relying on
+                keyword matching, the system understands the meaning behind
+                search queries, delivering more contextually relevant results.
+              </p>
+              <div class="mb-8">
+                <h5 class="font-semibold mb-3 text-primary">
+                  Key Achievements:
+                </h5>
+                <ul class="space-y-2 text-gray-300">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-primary mr-2 mt-1"></i>
+                    <span
+                      >Increased search relevance by 87% compared to previous
+                      keyword-based solution</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-primary mr-2 mt-1"></i>
+                    <span
+                      >Implemented vector-based search using PostgreSQL and
+                      pgvector</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-primary mr-2 mt-1"></i>
+                    <span>Created efficient document embedding pipeline</span>
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-primary mr-2 mt-1"></i>
+                    <span
+                      >Optimized for fast search performance even with large
+                      document collections</span
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <div class="flex items-center space-x-4">
+                <div class="bg-darker p-3 rounded-full">
+                  <img
+                    src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80"
+                    alt="Paweł Strzałkowski"
+                    class="w-12 h-12 rounded-full object-cover"
+                  />
+                </div>
+                <div>
+                  <div class="font-bold">Paweł Strzałkowski</div>
+                  <div class="text-sm text-gray-400">
+                    Chief Technology Officer at Visuality
+                  </div>
+                </div>
+              </div>
+
+              <a
+                href="https://www.youtube.com/watch?v=KxGZv7Z4BQs"
+                target="_blank"
+                class="inline-flex items-center mt-8 text-primary hover:underline"
+              >
+                Read case study
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 ml-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Case Study 3 - Image right, text left -->
+        <div class="bg-dark text-white rounded-lg overflow-hidden">
+          <div class="grid grid-cols-1 md:grid-cols-2">
+            <div class="p-12 flex flex-col justify-center">
+              <h4 class="text-3xl font-bold mb-6">
+                Rapid AI Assistant Implementation for Event Management
+              </h4>
+              <p class="text-gray-300 mb-6">
+                For a US-based digital entertainment platform, we rapidly
+                developed an AI assistant prototype that helps users create and
+                set up events through a conversational interface. The assistant
+                collects event information, validates data, and creates the
+                event in the system - all through natural language conversation.
+              </p>
+              <div class="mb-8">
+                <h5 class="font-semibold mb-3 text-primary">
+                  Key Achievements:
+                </h5>
+                <ul class="space-y-2 text-gray-300">
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-primary mr-2 mt-1"></i>
+                    <span
+                      >Developed a working MVP in just 3 days with a single
+                      developer</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-primary mr-2 mt-1"></i>
+                    <span
+                      >Used prompt engineering to guide the AI assistant's
+                      behavior</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-primary mr-2 mt-1"></i>
+                    <span
+                      >Created a feature-flagged implementation for controlled
+                      testing</span
+                    >
+                  </li>
+                  <li class="flex items-start">
+                    <i class="fas fa-check text-primary mr-2 mt-1"></i>
+                    <span
+                      >Proved the viability of AI assistants in streamlining
+                      workflows</span
+                    >
+                  </li>
+                </ul>
+              </div>
+
+              <div class="flex items-center space-x-4">
+                <div class="bg-darker p-3 rounded-full">
+                  <img
+                    src="https://images.unsplash.com/photo-1531891437562-4301cf35b7e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80"
+                    alt="Cezary Kłos"
+                    class="w-12 h-12 rounded-full object-cover"
+                  />
+                </div>
+                <div>
+                  <div class="font-bold">Cezary Kłos</div>
+                  <div class="text-sm text-gray-400">
+                    Senior Developer at Visuality
+                  </div>
+                </div>
+              </div>
+
+              <a
+                href="#"
+                class="inline-flex items-center mt-8 text-primary hover:underline"
+              >
+                Read case study
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 ml-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </a>
+            </div>
+
+            <div
+              class="bg-gradient-to-br from-primary/20 to-primary/5 flex items-center justify-center p-8"
+            >
+              <div class="relative w-full max-w-md">
+                <img
+                  src="https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                  alt="AI Assistant Chatbot"
+                  class="w-full h-auto rounded-lg shadow-lg"
+                />
+                <div
+                  class="absolute -bottom-4 -right-4 bg-primary text-white text-xs px-3 py-1 rounded font-semibold"
+                >
+                  Ruby + LLM Integration
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Insights & Presentations Section -->
+    <section class="py-20 dotted-background">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-16">
+          <h2 class="text-4xl font-bold">
+            Our <span class="text-primary">Insights & Presentations</span>
+          </h2>
+        </div>
+
+        <!-- RESOURCES section matching screenshot -->
+        <div class="mb-10">
+          <h2 class="text-lg font-bold uppercase text-gray-500 mb-4">
+            RESOURCES
+          </h2>
+          <h3 class="text-4xl font-bold mb-12">
+            AI articles that solve Your challenges
+          </h3>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Article 1: Vector Search in Ruby -->
+            <div>
+              <h3 class="text-2xl font-bold mb-3">Vector Search in Ruby</h3>
+              <p class="text-gray-600 mb-6">
+                Want to implement semantic search? You can discover how to add
+                vector search capabilities to Your Ruby applications. Learn how
+                You can find images with just a text description.
+              </p>
+              <a
+                href="https://www.visuality.pl/posts/vector-search-in-ruby"
+                class="flex items-center text-primary font-semibold hover:underline"
+                target="_blank"
+              >
+                Read more
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 ml-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </a>
+            </div>
+
+            <!-- Article 2: LLM Embeddings in Ruby -->
+            <div>
+              <h3 class="text-2xl font-bold mb-3">LLM Embeddings in Ruby</h3>
+              <p class="text-gray-600 mb-6">
+                Looking to enhance Your AI applications? You can learn how to
+                leverage LLM embeddings in Your Ruby projects. This article
+                shows You how to make Your applications truly understand
+                language.
+              </p>
+              <a
+                href="https://www.visuality.pl/posts/llm-embeddings-in-ruby"
+                class="flex items-center text-primary font-semibold hover:underline"
+                target="_blank"
+              >
+                Read more
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4 ml-1"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M14 5l7 7m0 0l-7 7m7-7H3"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- YouTube Presentations -->
+        <div>
+          <h3 class="text-2xl font-bold mb-8 border-t border-gray-200 pt-8">
+            YouTube Presentations
+          </h3>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <!-- YouTube Video 1 -->
+            <a
+              href="https://www.youtube.com/watch?v=Y7GYO-RdyMk"
+              class="block hover-scale group h-full"
+              target="_blank"
+            >
+              <div
+                class="bg-white border border-gray-100 overflow-hidden shadow-sm rounded-lg flex flex-col h-full"
+              >
+                <div class="relative">
+                  <img
+                    src="https://i.ytimg.com/vi/Y7GYO-RdyMk/maxresdefault.jpg"
+                    alt="[EN] AI-Assisted Data Extraction - Urszula Sołogub"
+                    class="w-full aspect-video object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div
+                    class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <div
+                      class="w-16 h-16 flex items-center justify-center bg-primary rounded-full text-white"
+                    >
+                      <i class="fas fa-play text-xl"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-4 flex-grow flex flex-col">
+                  <h4 class="font-semibold text-lg">
+                    [EN] AI-Assisted Data Extraction - Urszula Sołogub
+                  </h4>
+                  <p class="text-gray-600 mt-2">
+                    Extracting data with AI assistance
+                  </p>
+                </div>
+              </div>
+            </a>
+
+            <!-- YouTube Video 2 -->
+            <a
+              href="https://www.youtube.com/watch?v=LxvMm59uB3A"
+              class="block hover-scale group h-full"
+              target="_blank"
+            >
+              <div
+                class="bg-white border border-gray-100 overflow-hidden shadow-sm rounded-lg flex flex-col h-full"
+              >
+                <div class="relative">
+                  <img
+                    src="https://i.ytimg.com/vi/LxvMm59uB3A/maxresdefault.jpg"
+                    alt="[ENG] Effective tooling for building Robust AI and Data Science Applications in Ruby - W.Landon Gray"
+                    class="w-full aspect-video object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div
+                    class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <div
+                      class="w-16 h-16 flex items-center justify-center bg-primary rounded-full text-white"
+                    >
+                      <i class="fas fa-play text-xl"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-4 flex-grow flex flex-col">
+                  <h4 class="font-semibold text-lg flex-grow">
+                    [ENG] Effective tooling for building Robust AI and Data
+                    Science Applications in Ruby - W.Landon Gray
+                  </h4>
+                  <p class="text-gray-600 mt-2">
+                    Building robust AI applications in Ruby
+                  </p>
+                </div>
+              </div>
+            </a>
+
+            <!-- YouTube Video 3 -->
+            <a
+              href="https://www.youtube.com/watch?v=-pjS3osRRqo"
+              class="block hover-scale group h-full"
+              target="_blank"
+            >
+              <div
+                class="bg-white border border-gray-100 overflow-hidden shadow-sm rounded-lg flex flex-col h-full"
+              >
+                <div class="relative">
+                  <img
+                    src="https://i.ytimg.com/vi/-pjS3osRRqo/maxresdefault.jpg"
+                    alt="[ENG] Next Token (or how to work with LLMs) - Chris Hasiński"
+                    class="w-full aspect-video object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div
+                    class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <div
+                      class="w-16 h-16 flex items-center justify-center bg-primary rounded-full text-white"
+                    >
+                      <i class="fas fa-play text-xl"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-4 flex-grow flex flex-col">
+                  <h4 class="font-semibold text-lg flex-grow">
+                    [ENG] Next Token (or how to work with LLMs) - Chris Hasiński
+                  </h4>
+                  <p class="text-gray-600 mt-2">
+                    Working with Large Language Models
+                  </p>
+                </div>
+              </div>
+            </a>
+
+            <!-- YouTube Video 4 -->
+            <a
+              href="https://www.youtube.com/watch?v=KxGZv7Z4BQs"
+              class="block hover-scale group h-full"
+              target="_blank"
+            >
+              <div
+                class="bg-white border border-gray-100 overflow-hidden shadow-sm rounded-lg flex flex-col h-full"
+              >
+                <div class="relative">
+                  <img
+                    src="https://i.ytimg.com/vi/KxGZv7Z4BQs/maxresdefault.jpg"
+                    alt="[ENG] RAG and Vector Search in Ruby on Rails - Paweł Strzałkowski"
+                    class="w-full aspect-video object-cover transition-transform duration-300 group-hover:scale-105"
+                  />
+                  <div
+                    class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity"
+                  >
+                    <div
+                      class="w-16 h-16 flex items-center justify-center bg-primary rounded-full text-white"
+                    >
+                      <i class="fas fa-play text-xl"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="p-4 flex-grow flex flex-col">
+                  <h4 class="font-semibold text-lg flex-grow">
+                    [ENG] RAG and Vector Search in Ruby on Rails - Paweł
+                    Strzałkowski
+                  </h4>
+                  <p class="text-gray-600 mt-2">
+                    Implementing vector search in Rails
+                  </p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20 bg-[#0f1624]">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-10">
+          <h2 class="text-4xl font-bold text-white">
+            Client <span class="text-primary">Testimonials</span>
+          </h2>
+        </div>
+
+        <div
+          id="testimonials-container"
+          class="relative max-w-4xl mx-auto px-8"
+        >
+          <div
+            id="testimonials-slider"
+            class="bg-[#1a202e] rounded-lg p-8 shadow-xl overflow-hidden"
+            style="position: relative; overflow: hidden"
+          >
+            <div
+              class="testimonials-track flex transition-transform duration-500 ease-in-out"
+              style="width: 300%"
+            >
+              <!-- Testimonial 1 -->
+              <div
+                class="testimonial-slide w-full flex-shrink-0 p-8"
+                style="width: 100%"
+              >
+                <div class="flex flex-col md:flex-row items-start gap-6">
+                  <div
+                    class="md:w-1/3 lg:w-1/4 flex flex-col items-center md:items-start"
+                  >
+                    <div
+                      class="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden relative mb-4"
+                    >
+                      <img
+                        src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80"
+                        alt="Dan Zito"
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h3 class="font-bold text-xl text-white">Dan Zito</h3>
+                    <p class="text-primary">CTO at Structionsite</p>
+                    <div class="mt-3 text-center md:text-left">
+                      <div
+                        class="w-16 h-16 bg-[#2a3341] rounded-md overflow-hidden flex items-center justify-center"
+                      >
+                        <span class="text-gray-400 text-xs">Company logo</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="md:w-2/3 lg:w-3/4">
+                    <div
+                      class="text-gray-300 italic mb-6 text-lg leading-relaxed"
+                    >
+                      "They were communicative and experts in project
+                      management. Everything was organized, resulting in an easy
+                      and fruitful collaboration."
+                    </div>
+                    <div class="border-t border-gray-700 pt-6">
+                      <h4 class="font-bold mb-3 text-white text-lg">
+                        Project: AI-Powered Search Engine
+                      </h4>
+                      <p class="text-gray-300">
+                        We implemented a vector-based search system using
+                        pgvector in PostgreSQL to help Structionsite improve
+                        document retrieval accuracy by 87%. The system now
+                        understands context and user intent, delivering more
+                        relevant search results.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Testimonial 2 -->
+              <div
+                class="testimonial-slide w-full flex-shrink-0 p-8"
+                style="width: 100%"
+              >
+                <div class="flex flex-col md:flex-row items-start gap-6">
+                  <div
+                    class="md:w-1/3 lg:w-1/4 flex flex-col items-center md:items-start"
+                  >
+                    <div
+                      class="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden relative mb-4"
+                    >
+                      <img
+                        src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80"
+                        alt="Sam Stickland"
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h3 class="font-bold text-xl text-white">Sam Stickland</h3>
+                    <p class="text-primary">CTO at Hubbado</p>
+                    <div class="mt-3 text-center md:text-left">
+                      <div
+                        class="w-16 h-16 bg-[#2a3341] rounded-md overflow-hidden flex items-center justify-center"
+                      >
+                        <span class="text-gray-400 text-xs">Company logo</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="md:w-2/3 lg:w-3/4">
+                    <div
+                      class="text-gray-300 italic mb-6 text-lg leading-relaxed"
+                    >
+                      "Their ability to source good, experienced, and
+                      hardworking engineers is amazing."
+                    </div>
+                    <div class="border-t border-gray-700 pt-6">
+                      <h4 class="font-bold mb-3 text-white text-lg">
+                        Project: AI-Driven Recommendation Engine
+                      </h4>
+                      <p class="text-gray-300">
+                        We built a sophisticated recommendation system for
+                        Hubbado using LLM embeddings and machine learning
+                        algorithms. The system analyzes user behavior patterns
+                        and content preferences to provide personalized
+                        recommendations, increasing user engagement by 43%.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Testimonial 3 -->
+              <div
+                class="testimonial-slide w-full flex-shrink-0 p-8"
+                style="width: 100%"
+              >
+                <div class="flex flex-col md:flex-row items-start gap-6">
+                  <div
+                    class="md:w-1/3 lg:w-1/4 flex flex-col items-center md:items-start"
+                  >
+                    <div
+                      class="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden relative mb-4"
+                    >
+                      <img
+                        src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=150&q=80"
+                        alt="Jeljer Te Wies"
+                        class="w-full h-full object-cover"
+                      />
+                    </div>
+                    <h3 class="font-bold text-xl text-white">Jeljer Te Wies</h3>
+                    <p class="text-primary">CTO at Reloadify</p>
+                    <div class="mt-3 text-center md:text-left">
+                      <div
+                        class="w-16 h-16 bg-[#2a3341] rounded-md overflow-hidden flex items-center justify-center"
+                      >
+                        <span class="text-gray-400 text-xs">Company logo</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="md:w-2/3 lg:w-3/4">
+                    <div
+                      class="text-gray-300 italic mb-6 text-lg leading-relaxed"
+                    >
+                      "Their use of Gitlab and Kanban stand out, as does their
+                      top-level communication. Customers can expect impressive
+                      technical quality and energetic participation from them."
+                    </div>
+                    <div class="border-t border-gray-700 pt-6">
+                      <h4 class="font-bold mb-3 text-white text-lg">
+                        Project: Content Categorization System
+                      </h4>
+                      <p class="text-gray-300">
+                        We developed an AI-powered content categorization system
+                        for Reloadify using OpenAI embeddings. The system
+                        automatically classifies and tags content with 92%
+                        accuracy, significantly reducing manual work and
+                        improving content discoverability.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Left/Right Navigation -->
+          <button
+            id="prev-testimonial"
+            class="absolute top-1/2 -left-2 md:-left-5 transform -translate-y-1/2 bg-primary text-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center focus:outline-none shadow-lg z-10"
+            aria-label="Previous testimonial"
+          >
+            <i class="fas fa-chevron-left"></i>
+          </button>
+          <button
+            id="next-testimonial"
+            class="absolute top-1/2 -right-2 md:-right-5 transform -translate-y-1/2 bg-primary text-white w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center focus:outline-none shadow-lg z-10"
+            aria-label="Next testimonial"
+          >
+            <i class="fas fa-chevron-right"></i>
+          </button>
+        </div>
+
+        <!-- Navigation Dots -->
+        <div class="flex justify-center mt-8 space-x-4">
+          <button
+            class="testimonial-dot w-4 h-4 rounded-full bg-primary mx-2 focus:outline-none cursor-pointer"
+            data-index="0"
+          ></button>
+          <button
+            class="testimonial-dot w-4 h-4 rounded-full bg-gray-600 mx-2 focus:outline-none cursor-pointer"
+            data-index="1"
+          ></button>
+          <button
+            class="testimonial-dot w-4 h-4 rounded-full bg-gray-600 mx-2 focus:outline-none cursor-pointer"
+            data-index="2"
+          ></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Form Section with Light Gray Background -->
+    <section id="contact" class="py-20 bg-gray-50 dotted-background">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-16">
+          <h2 class="text-4xl font-bold">
+            Get in <span class="text-primary">Touch</span>
+          </h2>
+          <p class="mt-4 text-xl text-gray-600">
+            Start your AI journey with a free consultation
+          </p>
+        </div>
+
+        <div class="max-w-2xl">
+          <div class="bg-white p-8">
+            <div class="mb-6">
+              <p class="text-gray-600">
+                Ready to explore how AI can transform your business? Fill out
+                this form and our team will get back to you shortly.
+              </p>
+              <p class="mt-2 font-bold text-primary">
+                Your first consultation is completely free!
+              </p>
+            </div>
+
+            <form action="#" method="POST" class="space-y-6">
+              <div>
+                <label
+                  for="name"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Name / Company</label
+                >
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  class="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  required
+                />
+              </div>
+
+              <div>
+                <label
+                  for="email"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Email Address</label
+                >
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  class="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  required
+                />
+              </div>
+
+              <div>
+                <label
+                  for="phone"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Phone Number (Optional)</label
+                >
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  class="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="message"
+                  class="block text-sm font-medium text-gray-700 mb-1"
+                  >Tell us about your project or idea</label
+                >
+                <textarea
+                  id="message"
+                  name="message"
+                  rows="4"
+                  class="w-full px-4 py-2 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent"
+                  required
+                ></textarea>
+              </div>
+
+              <div>
+                <button
+                  type="submit"
+                  class="w-full bg-primary text-white font-bold py-3 px-4 hover:bg-orange-600 transition-colors"
+                >
+                  Request Free Consultation
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer with Dark Background -->
+    <footer class="bg-dark text-white py-10">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-8">
+          <h2 class="text-4xl font-bold">
+            LET'S <span class="text-primary">TALK</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+          <div>
+            <h3 class="text-sm font-bold uppercase mb-4 text-gray-400">Home</h3>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="text-white hover:text-primary transition-colors"
+                  >Services</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white hover:text-primary transition-colors"
+                  >Engineers</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white hover:text-primary transition-colors"
+                  >Consultants</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-bold uppercase mb-4 text-gray-400">
+              Services
+            </h3>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="text-white hover:text-primary transition-colors"
+                  >Ruby on Rails</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white hover:text-primary transition-colors"
+                  >AI Integration</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white hover:text-primary transition-colors"
+                  >Vector Search</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 class="text-sm font-bold uppercase mb-4 text-gray-400">
+              About Us
+            </h3>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="#"
+                  class="text-white hover:text-primary transition-colors"
+                  >Company</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white hover:text-primary transition-colors"
+                  >Blog Posts</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-white hover:text-primary transition-colors"
+                  >Videos</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <div class="md:col-span-2">
+            <div class="flex items-center space-x-4 mb-4">
+              <a
+                href="#"
+                class="text-white hover:text-primary transition-colors"
+              >
+                <i class="fab fa-github text-2xl"></i>
+              </a>
+              <a
+                href="#"
+                class="text-white hover:text-primary transition-colors"
+              >
+                <i class="fab fa-twitter text-2xl"></i>
+              </a>
+              <a
+                href="#"
+                class="text-white hover:text-primary transition-colors"
+              >
+                <i class="fab fa-linkedin text-2xl"></i>
+              </a>
+            </div>
+            <p class="text-gray-400">
+              &copy; <span id="current-year"></span> Visuality. All rights
+              reserved.
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Add JavaScript for testimonial slider -->
+    <script>
+      // Set current year in footer
+      document.getElementById("current-year").textContent =
+        new Date().getFullYear();
+
+      // Testimonial Slider
+      document.addEventListener("DOMContentLoaded", function () {
+        const track = document.querySelector(".testimonials-track");
+        const slides = document.querySelectorAll(".testimonial-slide");
+        const dots = document.querySelectorAll(".testimonial-dot");
+        const prevButton = document.getElementById("prev-testimonial");
+        const nextButton = document.getElementById("next-testimonial");
+
+        let currentIndex = 0;
+        let intervalId;
+
+        // Initialize slider
+        function initSlider() {
+          if (!track || slides.length === 0) return;
+
+          // Set track width to accommodate all slides
+          track.style.width = `${slides.length * 100}%`;
+
+          // Set each slide to take up the correct percentage of track width
+          slides.forEach((slide) => {
+            slide.style.width = `${100 / slides.length}%`;
+          });
+
+          updateSlider();
+          startAutoSlide();
+        }
+
+        // Update slider position and active dot
+        function updateSlider() {
+          if (!track) return;
+
+          // Calculate the percentage to translate based on current index
+          const translatePercent = currentIndex * (100 / slides.length);
+
+          // Move track to show current slide
+          track.style.transform = `translateX(-${translatePercent}%)`;
+
+          // Update active dot
+          dots.forEach((dot, index) => {
+            if (index === currentIndex) {
+              dot.classList.add("bg-primary");
+              dot.classList.remove("bg-gray-600");
+            } else {
+              dot.classList.remove("bg-primary");
+              dot.classList.add("bg-gray-600");
+            }
+          });
+        }
+
+        // Go to next slide
+        function nextSlide() {
+          currentIndex = (currentIndex + 1) % slides.length;
+          updateSlider();
+        }
+
+        // Go to previous slide
+        function prevSlide() {
+          currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+          updateSlider();
+        }
+
+        // Start auto-sliding
+        function startAutoSlide() {
+          stopAutoSlide();
+          intervalId = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+        }
+
+        // Stop auto-sliding
+        function stopAutoSlide() {
+          if (intervalId) {
+            clearInterval(intervalId);
+          }
+        }
+
+        // Event Listeners
+        nextButton.addEventListener("click", () => {
+          nextSlide();
+          startAutoSlide(); // Reset timer on manual navigation
+        });
+
+        prevButton.addEventListener("click", () => {
+          prevSlide();
+          startAutoSlide(); // Reset timer on manual navigation
+        });
+
+        dots.forEach((dot) => {
+          dot.addEventListener("click", () => {
+            const index = parseInt(dot.getAttribute("data-index"));
+            if (!isNaN(index)) {
+              currentIndex = index;
+              updateSlider();
+              startAutoSlide(); // Reset timer on manual navigation
+            }
+          });
+        });
+
+        // Pause auto-sliding when hovering over the slider
+        document
+          .getElementById("testimonials-container")
+          .addEventListener("mouseenter", stopAutoSlide);
+        document
+          .getElementById("testimonials-container")
+          .addEventListener("mouseleave", startAutoSlide);
+
+        // Initialize the slider
+        initSlider();
+      });
+    </script>
+  </body>
+</html>
